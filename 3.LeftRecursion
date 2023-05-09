@@ -1,5 +1,5 @@
-#include
-#include
+#include <stdio.h>
+#include <string.h>
 #define SIZE 10
 int main() {
 char nt;
@@ -11,15 +11,15 @@ int index=3;
 printf("Enter Number of productions:");
 scanf("%d",&num);
 printf("Enter the grammar as E->E-A:\n");
-for(i=0;i scanf("%s",p[i]);
-for(i=0;i {
-printf("\nGRAMMAR:%s",p[i]);
-nt=p[i][0];
-if(nt==p[i][index]) {
-a=p[i][index];
-printf("is left recursive:\n");
-while(p[i][index]!=0 && p[i][index]!='|') {
-index++;
+for(i=0;i <num;i++) scanf("%s",p[i]);
+for(i=0;i < num;i++){
+  printf("\nGRAMMAR:%s",p[i]);
+  nt=p[i][0];
+  if(nt==p[i][index]) {
+  a=p[i][index];
+   printf("is left recursive:\n");
+  while(p[i][index]!=0 && p[i][index]!='|') {
+  index++;
 }
 if(p[i][index]!=0) {
 b=p[i][index+1];
