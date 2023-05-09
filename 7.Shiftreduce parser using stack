@@ -29,33 +29,53 @@ check();
 }
 }
 void check() {
-strcpy(ac,"REDUCE TO E");
-for(z=0; z if(stk[z]=='i' && stk[z+1]=='d'){
-stk[z]='E';
-stk[z+1]='\0';
-printf("\n$%s\t%s$\t%s",stk,a,ac);
-j++;
+void check()
+{
+    // Copying string to be printed as action
+    strcpy(ac,"REDUCE TO E -> ");  
+       
+    // c=length of input string
+    for(z = 0; z < c; z++) 
+    {
+        if(stk[z] == '4') 
+        {
+            printf("%s4", ac);
+            stk[z] = 'E';
+            stk[z + 1] = '\0';
+               
+            //printing action
+            printf("\n$%s\t%s$\t", stk, a); 
+        }
+    }
+           
+    for(z = 0; z < c - 2; z++)
+    {
+        if(stk[z] == '2' && stk[z + 1] == 'E' && stk[z + 2] == '2') 
+        {
+            printf("%s2E2", ac);
+            stk[z] = 'E';
+            stk[z + 1] = '\0';
+            stk[z + 2] = '\0';
+            printf("\n$%s\t%s$\t", stk, a);
+            i = i - 2;
+        }
+           
+    }
+           
+    for(z = 0; z < c - 2; z++)
+    {
+        if(stk[z] == '3' && stk[z + 1] == 'E' &&  stk[z + 2] == '3') 
+        {
+            printf("%s3E3", ac);
+            stk[z]='E';
+            stk[z + 1]='\0';
+            stk[z + 2]='\0';
+            printf("\n$%s\t%s$\t", stk, a);
+            i = i - 2;
+        }
+    }
+    return ; 
 }
-for(z=0; z if(stk[z]=='E' && stk[z+1]=='+' && stk[z+2]=='E'){
-stk[z]='E';
-stk[z+1]='\0';
-stk[z+2]='\0';
-printf("\n$%s\t%s$\t%s",stk,a,ac);
-i=i-2;
-}
-for(z=0; z if(stk[z]=='E' && stk[z+1]=='*' && stk[z+2]=='E'){
-stk[z]='E';
-stk[z+1]='\0';
-stk[z+1]='\0';
-printf("\n$%s\t%s$\t%s",stk,a,ac);
-i=i-2;
-}
-for(z=0; z if(stk[z]=='(' && stk[z+1]=='E' && stk[z+2]==')'){
-stk[z]='E';
-stk[z+1]='\0';
-stk[z+1]='\0';
-printf("\n$%s\t%s$\t%s",stk,a,ac);
-i=i-2;
 }
 }
 
