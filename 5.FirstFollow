@@ -1,20 +1,21 @@
-#include <ctype.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include
-int n,m=0,p,i=0,j=0;
+#include<stdio.h>
+#include<math.h>
+#include<string.h>
+#include<ctype.h>
+#include<stdlib.h>
+intn,m=0,p,i=0,j=0;
 char a[10][10],f[10];
 void follow(char c);
 void first(char c);
 int main()
 {
-int i,z;
-char c,ch;
+inti,z;
+charc,ch;
 printf("Enter the no of productions:\n");
 scanf("%d",&n);
 printf("Enter the productions:\n");
-for(i=0;i scanf("%s%c",a[i],&ch);
+for(i=0;i<n;i++)
+scanf("%s%c",a[i],&ch);
 do
 {
 m=0;
@@ -22,13 +23,15 @@ printf("Enter the elements whose first and follow is to be found:");
 scanf("%c",&c);
 first(c);
 printf("first(%c)={",c);
-for(i=0;i printf("%c",f[i]);
+for(i=0;i<m;i++)
+printf("%c",f[i]);
 printf("}\n");
 strcpy(f," ");
 m=0;
 follow(c);
 printf("follow(%c)={",c);
-for(i=0;i printf("%c",f[i]);
+for(i=0;i<m;i++)
+printf("%c",f[i]);
 printf("}\n");
 printf("continue(0/1)?");
 scanf("%d%c",&z,&ch);
@@ -40,7 +43,8 @@ void first(char c)
 int k;
 if(!isupper(c))
 f[m++]=c;
-for(k=0;k {
+for(k=0;k<n;k++)
+{
 if(a[k][0]==c)
 {
 if(a[k][2]=='$')
@@ -55,8 +59,10 @@ void follow(char c)
 {
 if(a[0][0]==c)
 f[m++]='$';
-for(i=0;i {
-for(j=2;j {
+for(i=0;i<n;i++)
+{
+for(j=2;j<strlen(a[i]);j++)
+{
 if(a[i][j]==c)
 {
 if(a[i][j+1]!='\0')
@@ -67,21 +73,21 @@ follow(a[i][0]);
 }
 }
 }
-
 /*
-Enter the no of productions:5
+Sample Output:
+Enter the no. of productions:
+5
 Enter the productions:
-S=ABCD
+S=AbCd
 A=Cf
 A=a
 C=gE
 E=h
-Enter the elements whose first and follow is to be found:S
-first(S)={ga}
-follow(S)={$}
-continue(0/1)?1
-Enter the elements whose first and follow is to be found:A
-first(A)={ga}
-follow(A)={}
-continue(0/1)?0
-*/
+Enter the elements whose first & follow is to be found: S
+First(S)={ga}
+Follow(S)={$}
+Continue(0/1)?1
+Enter the elements whose first & follow is to be found: A
+First(A)={ga}
+Follow(A)={b}
+Continue(0/1)?0*/
